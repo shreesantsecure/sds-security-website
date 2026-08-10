@@ -23,6 +23,15 @@ export function Navbar() {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
+    const handleContactClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        const element = document.getElementById("contact-form");
+        if (element) {
+            e.preventDefault();
+            element.scrollIntoView({ behavior: "smooth" });
+            setMobileMenuOpen(false);
+        }
+    };
+
     return (
         <header
             className={cn(
@@ -54,7 +63,8 @@ export function Navbar() {
                                         onMouseEnter={() => setActiveDropdown(item.label)}
                                         onMouseLeave={() => setActiveDropdown(null)}
                                     >
-                                        <button
+                                        <Link
+                                            href={item.href || "#"}
                                             className={cn(
                                                 "flex items-center gap-1 px-3 py-2 text-sm font-medium transition-colors rounded-full",
                                                 isActive
@@ -69,11 +79,11 @@ export function Navbar() {
                                                     activeDropdown === item.label ? "rotate-180" : ""
                                                 )}
                                             />
-                                        </button>
+                                        </Link>
 
                                         {/* Dropdown Menu */}
                                         {activeDropdown === item.label && (
-                                            <div className="absolute top-full left-0 mt-1 w-64 bg-white rounded-xl shadow-xl border border-slate-100 py-2 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
+                                            <div className="absolute top-full left-0 w-64 bg-white rounded-xl shadow-xl border border-slate-100 py-2 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
                                                 {item.children?.map((child) => (
                                                     <Link
                                                         key={child.label}
@@ -99,10 +109,13 @@ export function Navbar() {
                                 );
                             }
 
+                            const isContact = item.href === "#contact-form" || item.label === "Contact";
+
                             return (
                                 <Link
                                     key={item.label}
                                     href={item.href || "#"}
+                                    onClick={isContact ? handleContactClick : undefined}
                                     className={cn(
                                         "px-4 py-2 text-sm font-semibold transition-all rounded-full",
                                         isActive
@@ -163,42 +176,46 @@ export function Navbar() {
             {/* Mobile Drawer */}
             {isMobileMenuOpen && (
                 <div className="lg:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-6 space-y-3">
-                    {navigation.map((item) => (
-                        <div key={item.label}>
-                            {item.children ? (
-                                <div className="space-y-1">
-                                    <span className="block px-3 py-2 text-xs font-bold text-slate-400 uppercase tracking-wider">
+                    {navigation.map((item) => {
+                        const isContact = item.href === "#contact-form" || item.label === "Contact";
+
+                        return (
+                            <div key={item.label}>
+                                {item.children ? (
+                                    <div className="space-y-1">
+                                        <span className="block px-3 py-2 text-xs font-bold text-slate-400 uppercase tracking-wider">
+                                            {item.label}
+                                        </span>
+                                        {item.children.map((child) => (
+                                            <Link
+                                                key={child.label}
+                                                href={child.href || "#"}
+                                                target={child.external ? "_blank" : undefined}
+                                                onClick={() => setMobileMenuOpen(false)}
+                                                className="block px-6 py-2 text-sm font-medium text-slate-700 hover:text-[#0B65C6] hover:bg-sky-50 rounded-lg"
+                                            >
+                                                {child.label}
+                                                {child.external && " ↗"}
+                                            </Link>
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <Link
+                                        href={item.href || "#"}
+                                        onClick={isContact ? handleContactClick : () => setMobileMenuOpen(false)}
+                                        className={cn(
+                                            "block px-3 py-2 text-sm font-semibold rounded-lg",
+                                            item.href === "/" && pathname === "/"
+                                                ? "bg-[#0B65C6] text-white"
+                                                : "text-slate-800 hover:bg-slate-100"
+                                        )}
+                                    >
                                         {item.label}
-                                    </span>
-                                    {item.children.map((child) => (
-                                        <Link
-                                            key={child.label}
-                                            href={child.href || "#"}
-                                            target={child.external ? "_blank" : undefined}
-                                            onClick={() => setMobileMenuOpen(false)}
-                                            className="block px-6 py-2 text-sm font-medium text-slate-700 hover:text-[#0B65C6] hover:bg-sky-50 rounded-lg"
-                                        >
-                                            {child.label}
-                                            {child.external && " ↗"}
-                                        </Link>
-                                    ))}
-                                </div>
-                            ) : (
-                                <Link
-                                    href={item.href || "#"}
-                                    onClick={() => setMobileMenuOpen(false)}
-                                    className={cn(
-                                        "block px-3 py-2 text-sm font-semibold rounded-lg",
-                                        item.href === "/" && pathname === "/"
-                                            ? "bg-[#0B65C6] text-white"
-                                            : "text-slate-800 hover:bg-slate-100"
-                                    )}
-                                >
-                                    {item.label}
-                                </Link>
-                            )}
-                        </div>
-                    ))}
+                                    </Link>
+                                )}
+                            </div>
+                        );
+                    })}
 
                     {/* Mobile Socials */}
                     <div className="flex items-center gap-3 pt-3 border-t border-slate-100 px-3">

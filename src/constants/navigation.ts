@@ -24,19 +24,24 @@ export const navigation: NavSection[] = [
     },
     {
         label: "Services",
-        href: "#",
+        href: "/services",
         children: [
             {
                 label: "Electronic Security",
-                href: "/services/electronic-security",
+                href: "/services#electronic-security",
             },
             {
                 label: "Cyber Security",
-                href: "/services/cyber-security",
+                href: "/services#cyber-security",
             },
             {
                 label: "Manpower Security",
-                href: "/services/manpower-security",
+                href: "/services#manpower-security",
+            },
+            {
+                label: "Brochure",
+                href: "/documents/SDS+PROFILE.pdf",
+                external: true,
             },
         ],
     },
@@ -50,7 +55,7 @@ export const navigation: NavSection[] = [
     },
     {
         label: "Contact",
-        href: "/#contact-form",
+        href: "#contact-form",
     },
     {
         label: "AMC Services",

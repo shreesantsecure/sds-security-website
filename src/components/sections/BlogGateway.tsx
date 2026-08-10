@@ -3,38 +3,18 @@
 import Link from "next/link";
 import { ArrowRight, Calendar, User } from "lucide-react";
 
-const samplePosts = [
-    {
-        id: 1,
-        title: "10 Reasons Why Every Modern Office Needs Smart CCTV Surveillance",
-        excerpt: "Discover how intelligent IP cameras and AI analytics prevent intrusion and improve workplace safety.",
-        date: "July 28, 2026",
-        author: "SDS Security Team",
-        category: "Electronic Security",
-        image: "https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=800&q=80",
-        slug: "reasons-every-office-needs-smart-cctv",
-    },
-    {
-        id: 2,
-        title: "Cybersecurity Best Practices for Small and Medium Enterprises",
-        excerpt: "Protect your corporate data against ransomware and digital threats with these essential security steps.",
-        date: "July 20, 2026",
-        author: "Cyber Insights",
-        category: "Cyber Security",
-        image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80",
-        slug: "cybersecurity-best-practices-for-smes",
-    },
-    {
-        id: 3,
-        title: "Biometric & RFID Access Control: The Future of Entry Systems",
-        excerpt: "Replace physical keys with keyless touchless entry for higher security and seamless access logs.",
-        date: "July 12, 2026",
-        author: "Tech Desk",
-        category: "Access Control",
-        image: "https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=800&q=80",
-        slug: "biometric-rfid-access-control-future",
-    },
-];
+import { BLOG_POSTS } from "@/data/blogs";
+
+const samplePosts = BLOG_POSTS.slice(0, 3).map((post, idx) => ({
+    id: idx + 1,
+    title: post.title,
+    excerpt: post.excerpt,
+    date: post.date,
+    author: post.author.name,
+    category: post.category,
+    image: post.image,
+    slug: post.slug,
+}));
 
 export function BlogGateway() {
     return (

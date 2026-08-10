@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ROUTES } from "@/constants/siteConfig";
+import { ContactForm } from "@/components/sections/ContactForm";
 
 // Simple inline social icon components (using SVGs)
 function XIcon() {
@@ -36,136 +37,139 @@ function YtIcon() {
 
 export function Footer() {
     return (
-        <footer className="bg-slate-100 text-slate-700 border-t border-slate-200">
-            {/* ── Top section: Logo + Nav columns ── */}
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-10">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-                    {/* Logo */}
-                    <div className="lg:col-span-1 flex items-start">
-                        <Link href="/">
-                            <Image
-                                src="/logos/SDS Logo FNL-02 2-1.png"
-                                alt="SDS Security"
-                                width={180}
-                                height={80}
-                                className="h-20 w-auto object-contain"
-                            />
-                        </Link>
-                    </div>
-
-                    {/* Categories */}
-                    <div className="space-y-4">
-                        <h4 className="text-sm font-semibold text-slate-900 tracking-wide">Categories</h4>
-                        <ul className="space-y-2.5 text-sm text-slate-600">
-                            <li>
-                                <Link href={ROUTES.PRODUCTS} className="hover:text-[#0B65C6] transition-colors">
-                                    View All
-                                </Link>
-                            </li>
-                        </ul>
-                    </div>
-
-                    {/* Company */}
-                    <div className="space-y-4">
-                        <h4 className="text-sm font-semibold text-slate-900 tracking-wide">Company</h4>
-                        <ul className="space-y-2.5 text-sm text-slate-600">
-                            <li><Link href="/" className="hover:text-[#0B65C6] transition-colors">Home</Link></li>
-                            <li><Link href={ROUTES.ABOUT} className="hover:text-[#0B65C6] transition-colors">About us</Link></li>
-                            <li><Link href={ROUTES.PRODUCTS} className="hover:text-[#0B65C6] transition-colors">Products</Link></li>
-                            <li><Link href={ROUTES.SERVICES.ELECTRONIC_SECURITY} className="hover:text-[#0B65C6] transition-colors">Services</Link></li>
-                            <li><Link href={ROUTES.BLOG} className="hover:text-[#0B65C6] transition-colors">Blog</Link></li>
-                        </ul>
-                    </div>
-
-                    {/* Contact */}
-                    <div className="space-y-4">
-                        <h4 className="text-sm font-semibold text-slate-900 tracking-wide">Contact</h4>
-                        <ul className="space-y-2.5 text-sm text-slate-600">
-                            <li>
-                                <Link href={ROUTES.CONTACT} className="hover:text-[#0B65C6] transition-colors flex items-center gap-2">
-                                    <span>💬</span> Contact us
-                                </Link>
-                            </li>
-                            <li>
-                                <a href="mailto:office@sreesecure.com" className="hover:text-[#0B65C6] transition-colors flex items-center gap-2">
-                                    <span>✉️</span> office@sreesecure.com
-                                </a>
-                            </li>
-                            <li>
-                                <a href="tel:+919900097078" className="hover:text-[#0B65C6] transition-colors flex items-center gap-2">
-                                    <span>📞</span> 9900097078
-                                </a>
-                            </li>
-                            <li>
-                                <Link href="/contact" className="hover:text-[#0B65C6] transition-colors flex items-center gap-2">
-                                    <span>📋</span> Register a complaint
-                                </Link>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            {/* ── Address row ── */}
-            <div className="border-t border-slate-200">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-sm text-slate-600">
-                        <div className="space-y-1.5">
-                            <p className="font-semibold text-slate-900 text-[13px]">Headquarters</p>
-                            <p className="leading-relaxed">Survey no 111/2 Investment layout 3rd cross road near muneeswaran temple, tech city layout, neeladiri nagar, Electronic city phase 1, Bangalore 560100</p>
+        <>
+            <ContactForm />
+            <footer className="bg-slate-100 text-slate-700 border-t border-slate-200">
+                {/* ── Top section: Logo + Nav columns ── */}
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-10">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+                        {/* Logo */}
+                        <div className="lg:col-span-1 flex items-start">
+                            <Link href="/">
+                                <Image
+                                    src="/logos/SDS Logo FNL-02 2-1.png"
+                                    alt="SDS Security"
+                                    width={180}
+                                    height={80}
+                                    className="h-20 w-auto object-contain"
+                                />
+                            </Link>
                         </div>
-                        <div className="space-y-1.5">
-                            <p className="font-semibold text-slate-900 text-[13px]">Chennai</p>
-                            <p className="leading-relaxed">#14, W Jones Rd, West Saidapet, Saidapet, Chennai, Tamil Nadu 600015</p>
+
+                        {/* Categories */}
+                        <div className="space-y-4">
+                            <h4 className="text-sm font-semibold text-slate-900 tracking-wide">Categories</h4>
+                            <ul className="space-y-2.5 text-sm text-slate-600">
+                                <li>
+                                    <Link href={ROUTES.PRODUCTS} className="hover:text-[#0B65C6] transition-colors">
+                                        View All
+                                    </Link>
+                                </li>
+                            </ul>
                         </div>
-                        <div className="space-y-1.5">
-                            <p className="font-semibold text-slate-900 text-[13px]">Hyderabad</p>
-                            <p className="leading-relaxed">Aditya Mist, Green Hamlet, Hanuman Nagar, Silpa Park, Kondapur, Hyderabad–500084</p>
+
+                        {/* Company */}
+                        <div className="space-y-4">
+                            <h4 className="text-sm font-semibold text-slate-900 tracking-wide">Company</h4>
+                            <ul className="space-y-2.5 text-sm text-slate-600">
+                                <li><Link href="/" className="hover:text-[#0B65C6] transition-colors">Home</Link></li>
+                                <li><Link href={ROUTES.ABOUT} className="hover:text-[#0B65C6] transition-colors">About us</Link></li>
+                                <li><Link href={ROUTES.PRODUCTS} className="hover:text-[#0B65C6] transition-colors">Products</Link></li>
+                                <li><Link href={ROUTES.SERVICES.ELECTRONIC_SECURITY} className="hover:text-[#0B65C6] transition-colors">Services</Link></li>
+                                <li><Link href={ROUTES.BLOG} className="hover:text-[#0B65C6] transition-colors">Blog</Link></li>
+                            </ul>
                         </div>
-                        <div className="space-y-1.5">
-                            <p className="font-semibold text-slate-900 text-[13px]">Our Presence in</p>
-                            <p className="leading-relaxed">Manglore, Kochi, Noida</p>
+
+                        {/* Contact */}
+                        <div className="space-y-4">
+                            <h4 className="text-sm font-semibold text-slate-900 tracking-wide">Contact</h4>
+                            <ul className="space-y-2.5 text-sm text-slate-600">
+                                <li>
+                                    <Link href={ROUTES.CONTACT} className="hover:text-[#0B65C6] transition-colors flex items-center gap-2">
+                                        <span>💬</span> Contact us
+                                    </Link>
+                                </li>
+                                <li>
+                                    <a href="mailto:office@sreesecure.com" className="hover:text-[#0B65C6] transition-colors flex items-center gap-2">
+                                        <span>✉️</span> office@sreesecure.com
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="tel:+919900097078" className="hover:text-[#0B65C6] transition-colors flex items-center gap-2">
+                                        <span>📞</span> 9900097078
+                                    </a>
+                                </li>
+                                <li>
+                                    <Link href="/contact" className="hover:text-[#0B65C6] transition-colors flex items-center gap-2">
+                                        <span>📋</span> Register a complaint
+                                    </Link>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            {/* ── Bottom bar: social + copyright + legal ── */}
-            <div className="border-t border-slate-200">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-4">
-                    {/* Social Icons */}
-                    <div className="flex items-center gap-4">
-                        <a href="#" aria-label="X / Twitter" className="text-slate-500 hover:text-[#0B65C6] transition-colors">
-                            <XIcon />
-                        </a>
-                        <a href="#" aria-label="Facebook" className="text-slate-500 hover:text-[#0B65C6] transition-colors">
-                            <FbIcon />
-                        </a>
-                        <a href="#" aria-label="Instagram" className="text-slate-500 hover:text-[#0B65C6] transition-colors">
-                            <IgIcon />
-                        </a>
-                        <a href="#" aria-label="YouTube" className="text-slate-500 hover:text-[#0B65C6] transition-colors">
-                            <YtIcon />
-                        </a>
-                    </div>
-
-                    {/* Copyright */}
-                    <p className="text-xs text-slate-500 text-center">
-                        © {new Date().getFullYear()} SDS All rights reserved
-                    </p>
-
-                    {/* Legal links */}
-                    <div className="flex items-center gap-3 text-xs text-slate-500 flex-wrap justify-center">
-                        <Link href={ROUTES.PRIVACY_POLICY} className="hover:text-[#0B65C6] transition-colors">Privacy Policy</Link>
-                        <span>•</span>
-                        <Link href={ROUTES.TERMS} className="hover:text-[#0B65C6] transition-colors">Terms &amp; Conditions</Link>
-                        <span>•</span>
-                        <Link href={ROUTES.REFUND_POLICY} className="hover:text-[#0B65C6] transition-colors">Refund Policy</Link>
-                        <span>•</span>
-                        <Link href={ROUTES.SHIPPING_POLICY} className="hover:text-[#0B65C6] transition-colors">Shipping &amp; Delivery</Link>
+                {/* ── Address row ── */}
+                <div className="border-t border-slate-200">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-sm text-slate-600">
+                            <div className="space-y-1.5">
+                                <p className="font-semibold text-slate-900 text-[13px]">Headquarters</p>
+                                <p className="leading-relaxed">Novel Tech Park, Ground Floor, Room No.9,Hosur Rd, Kudlu Gate, Krishna Reddy Industrial Area, H.S, R Extension, Bengaluru, Karnataka 560068</p>
+                            </div>
+                            <div className="space-y-1.5">
+                                <p className="font-semibold text-slate-900 text-[13px]">Chennai</p>
+                                <p className="leading-relaxed">#14, W Jones Rd, West Saidapet, Saidapet, Chennai, Tamil Nadu 600015</p>
+                            </div>
+                            <div className="space-y-1.5">
+                                <p className="font-semibold text-slate-900 text-[13px]">Hyderabad</p>
+                                <p className="leading-relaxed">Aditya Mist, Green Hamlet, Hanuman Nagar, Silpa Park, Kondapur, Hyderabad–500084</p>
+                            </div>
+                            <div className="space-y-1.5">
+                                <p className="font-semibold text-slate-900 text-[13px]">Our Presence in</p>
+                                <p className="leading-relaxed">Manglore, Kochi, Noida</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </footer>
+
+                {/* ── Bottom bar: social + copyright + legal ── */}
+                <div className="border-t border-slate-200">
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+                        {/* Social Icons */}
+                        <div className="flex items-center gap-4">
+                            <a href="#" aria-label="X / Twitter" className="text-slate-500 hover:text-[#0B65C6] transition-colors">
+                                <XIcon />
+                            </a>
+                            <a href="#" aria-label="Facebook" className="text-slate-500 hover:text-[#0B65C6] transition-colors">
+                                <FbIcon />
+                            </a>
+                            <a href="#" aria-label="Instagram" className="text-slate-500 hover:text-[#0B65C6] transition-colors">
+                                <IgIcon />
+                            </a>
+                            <a href="#" aria-label="YouTube" className="text-slate-500 hover:text-[#0B65C6] transition-colors">
+                                <YtIcon />
+                            </a>
+                        </div>
+
+                        {/* Copyright */}
+                        <p className="text-xs text-slate-500 text-center">
+                            © {new Date().getFullYear()} SDS All rights reserved
+                        </p>
+
+                        {/* Legal links */}
+                        <div className="flex items-center gap-3 text-xs text-slate-500 flex-wrap justify-center">
+                            <Link href={ROUTES.PRIVACY_POLICY} className="hover:text-[#0B65C6] transition-colors">Privacy Policy</Link>
+                            <span>•</span>
+                            <Link href={ROUTES.TERMS} className="hover:text-[#0B65C6] transition-colors">Terms &amp; Conditions</Link>
+                            <span>•</span>
+                            <Link href={ROUTES.REFUND_POLICY} className="hover:text-[#0B65C6] transition-colors">Refund Policy</Link>
+                            <span>•</span>
+                            <Link href={ROUTES.SHIPPING_POLICY} className="hover:text-[#0B65C6] transition-colors">Shipping &amp; Delivery</Link>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </>
     );
 }

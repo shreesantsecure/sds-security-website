@@ -7,7 +7,6 @@ import { ServicesOverview } from "@/components/sections/ServicesOverview";
 import { SetupProcess } from "@/components/sections/SetupProcess";
 import { BlogGateway } from "@/components/sections/BlogGateway";
 import { FaqSection } from "@/components/sections/FaqSection";
-import { ContactForm } from "@/components/sections/ContactForm";
 import { Footer } from "@/components/layout/Footer";
 
 export default function Home() {
@@ -40,12 +39,9 @@ export default function Home() {
 
                 {/* Section 8: FAQ Accordion */}
                 <FaqSection />
-
-                {/* Section 9: Contact Form */}
-                <ContactForm />
             </div>
 
-            {/* Footer */}
+            {/* Footer (includes global Contact Form) */}
             <Footer />
         </div>
     );
