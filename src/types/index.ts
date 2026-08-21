@@ -3,8 +3,10 @@
 export interface NavItem {
     label: string;
     href?: string;
-    /** If true, link opens in new tab (used for external AMC login URLs) */
+    /** If true, link opens in new tab (used for external AMC/Employee login URLs) */
     external?: boolean;
+    /** If present, pre-opens tenant link before redirecting to target portal */
+    tenantUrl?: string;
     children?: NavItem[];
 }
 

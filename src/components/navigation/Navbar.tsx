@@ -32,6 +32,18 @@ export function Navbar() {
         }
     };
 
+    const handlePortalClick = (e: React.MouseEvent<HTMLAnchorElement>, href?: string, tenantUrl?: string) => {
+        if (tenantUrl && href) {
+            e.preventDefault();
+            const win = window.open(tenantUrl, "_blank");
+            if (win) {
+                setTimeout(() => {
+                    win.location.href = href;
+                }, 600);
+            }
+        }
+    };
+
     return (
         <header
             className={cn(
@@ -90,7 +102,12 @@ export function Navbar() {
                                                         href={child.href || "#"}
                                                         target={child.external ? "_blank" : undefined}
                                                         rel={child.external ? "noopener noreferrer" : undefined}
-                                                        onClick={() => setActiveDropdown(null)}
+                                                        onClick={(e) => {
+                                                            if (child.tenantUrl) {
+                                                                handlePortalClick(e, child.href, child.tenantUrl);
+                                                            }
+                                                            setActiveDropdown(null);
+                                                        }}
                                                         className="flex flex-col px-4 py-2.5 hover:bg-sky-50 transition-colors group"
                                                     >
                                                         <span className="text-sm font-semibold text-slate-800 group-hover:text-[#0B65C6]">
@@ -191,7 +208,12 @@ export function Navbar() {
                                                 key={child.label}
                                                 href={child.href || "#"}
                                                 target={child.external ? "_blank" : undefined}
-                                                onClick={() => setMobileMenuOpen(false)}
+                                                onClick={(e) => {
+                                                    if (child.tenantUrl) {
+                                                        handlePortalClick(e, child.href, child.tenantUrl);
+                                                    }
+                                                    setMobileMenuOpen(false);
+                                                }}
                                                 className="block px-6 py-2 text-sm font-medium text-slate-700 hover:text-[#0B65C6] hover:bg-sky-50 rounded-lg"
                                             >
                                                 {child.label}

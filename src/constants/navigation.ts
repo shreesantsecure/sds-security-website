@@ -58,22 +58,29 @@ export const navigation: NavSection[] = [
         href: "#contact-form",
     },
     {
-        label: "AMC Services",
-        href: "/amc-services",
+        label: "Employee Login",
+        href: "#",
         children: [
             {
-                label: "Customer Login",
-                href: process.env.NEXT_PUBLIC_CUSTOMER_LOGIN_URL ?? "#",
-                external: true,
-            },
-            {
                 label: "CRM Login",
-                href: process.env.NEXT_PUBLIC_CRM_LOGIN_URL ?? "#",
+                href: "https://servewell.me/crm/login/",
                 external: true,
+                tenantUrl: "https://servewell.me/sreesecuredesignsolutions/",
             },
             {
                 label: "Tech App Login",
-                href: process.env.NEXT_PUBLIC_TECH_APP_LOGIN_URL ?? "#",
+                href: "https://servewell.me/app/login/",
+                external: true,
+                tenantUrl: "https://servewell.me/sreesecuredesignsolutions/",
+            },
+            {
+                label: "Salary Box",
+                href: "https://web.salarybox.in/",
+                external: true,
+            },
+            {
+                label: "Smart Payroll",
+                href: "https://payroll.razorpay.com/login?redirect=%2Fdashboard",
                 external: true,
             },
         ],
