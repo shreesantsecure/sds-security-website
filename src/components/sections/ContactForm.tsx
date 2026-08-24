@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 
 export function ContactForm() {
     const [form, setForm] = useState({
@@ -11,6 +10,19 @@ export function ContactForm() {
         message: "",
     });
     const [submitted, setSubmitted] = useState(false);
+
+    const handleCustomerLoginClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault();
+        const tenantUrl = "https://servewell.me/sreesecuredesignsolutions/";
+        const targetUrl = "https://servewell.me/web/home/#cust_login-section";
+
+        const win = window.open(tenantUrl, "_blank");
+        if (win) {
+            setTimeout(() => {
+                win.location.href = targetUrl;
+            }, 600);
+        }
+    };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setForm({ ...form, [e.target.name]: e.target.value });
@@ -35,12 +47,15 @@ export function ContactForm() {
                         </p>
                         <p className="text-slate-500 text-base font-normal">
                             Are you facing any issue?{" "}
-                            <Link
-                                href="/contact"
-                                className="text-[#0B65C6] hover:underline font-normal"
+                            <a
+                                href="https://servewell.me/web/home/#cust_login-section"
+                                onClick={handleCustomerLoginClick}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-[#0B65C6] hover:underline font-semibold cursor-pointer"
                             >
                                 Raise a complaint
-                            </Link>
+                            </a>
                         </p>
                     </div>
 
