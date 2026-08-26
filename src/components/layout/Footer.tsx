@@ -115,7 +115,7 @@ export function Footer() {
                     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-sm text-slate-600">
                             <div className="space-y-1.5">
-                                <p className="font-semibold text-slate-900 text-[13px]">Headquarters</p>
+                                <p className="font-semibold text-slate-900 text-[13px]">Bangalore- HQ</p>
                                 <p className="leading-relaxed">Novel Tech Park, Ground Floor, Room No.9,Hosur Rd, Kudlu Gate, Krishna Reddy Industrial Area, H.S, R Extension, Bengaluru, Karnataka 560068</p>
                             </div>
                             <div className="space-y-1.5">
@@ -153,9 +153,17 @@ export function Footer() {
                             </a>
                         </div>
 
-                        {/* Copyright */}
+                        {/* Copyright & Powered by */}
                         <p className="text-xs text-slate-500 text-center">
-                            © {new Date().getFullYear()} SDS All rights reserved
+                            © {new Date().getFullYear()} SDS All rights reserved <span className="mx-1.5">•</span> Powered by -{" "}
+                            <a
+                                href="https://www.nabeelscale.com/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="font-semibold text-slate-700 hover:text-[#0B65C6] transition-colors"
+                            >
+                                NBL
+                            </a>
                         </p>
 
                         {/* Legal links */}
