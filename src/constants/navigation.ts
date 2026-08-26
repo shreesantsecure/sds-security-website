@@ -50,6 +50,10 @@ export const navigation: NavSection[] = [
         href: "/blog",
     },
     {
+        label: "Careers",
+        href: "/careers",
+    },
+    {
         label: "About Us",
         href: "/about",
     },

@@ -44,6 +44,7 @@
     "react-hook-form": "^7.83.0",
     "react-hot-toast": "^2.6.0",
     "react-intersection-observer": "^11.0.0",
+    "resend": "^6.22.1",
     "swiper": "^14.0.7",
     "tailwind-merge": "^3.6.0",
     "tailwindcss": "^4.3.3",

@@ -74,6 +74,7 @@ export function Footer() {
                             <ul className="space-y-2.5 text-sm text-slate-600">
                                 <li><Link href="/" className="hover:text-[#0B65C6] transition-colors">Home</Link></li>
                                 <li><Link href={ROUTES.ABOUT} className="hover:text-[#0B65C6] transition-colors">About us</Link></li>
+                                <li><Link href={ROUTES.CAREERS} className="hover:text-[#0B65C6] transition-colors">Careers</Link></li>
                                 <li><Link href={ROUTES.PRODUCTS} className="hover:text-[#0B65C6] transition-colors">Products</Link></li>
                                 <li><Link href={ROUTES.SERVICES.ELECTRONIC_SECURITY} className="hover:text-[#0B65C6] transition-colors">Services</Link></li>
                                 <li><Link href={ROUTES.BLOG} className="hover:text-[#0B65C6] transition-colors">Blog</Link></li>

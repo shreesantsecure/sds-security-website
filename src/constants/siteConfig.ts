@@ -42,6 +42,7 @@ export const ROUTES = {
     },
     AMC: "/amc-services",
     BLOG: "/blog",
+    CAREERS: "/careers",
     ABOUT: "/about",
     CONTACT: "/contact",
     PRIVACY_POLICY: "/privacy-policy",
