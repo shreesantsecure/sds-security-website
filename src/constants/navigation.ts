@@ -61,32 +61,34 @@ export const navigation: NavSection[] = [
         label: "Contact",
         href: "#contact-form",
     },
-    {
-        label: "Employee Login",
-        href: "#",
-        children: [
-            {
-                label: "CRM Login",
-                href: "https://servewell.me/crm/login/",
-                external: true,
-                tenantUrl: "https://servewell.me/sreesecuredesignsolutions/",
-            },
-            {
-                label: "Tech App Login",
-                href: "https://servewell.me/app/login/",
-                external: true,
-                tenantUrl: "https://servewell.me/sreesecuredesignsolutions/",
-            },
-            {
-                label: "Salary Box",
-                href: "https://web.salarybox.in/",
-                external: true,
-            },
-            {
-                label: "Smart Payroll",
-                href: "https://payroll.razorpay.com/login?redirect=%2Fdashboard",
-                external: true,
-            },
-        ],
-    },
 ];
+
+export const employeeLoginItem: NavSection = {
+    label: "Employee Login",
+    href: "#",
+    children: [
+        {
+            label: "CRM Login",
+            href: "https://servewell.me/crm/login/",
+            external: true,
+            tenantUrl: "https://servewell.me/sreesecuredesignsolutions/",
+        },
+        {
+            label: "Tech App Login",
+            href: "https://servewell.me/app/login/",
+            external: true,
+            tenantUrl: "https://servewell.me/sreesecuredesignsolutions/",
+        },
+        {
+            label: "Salary Box",
+            href: "https://web.salarybox.in/",
+            external: true,
+        },
+        {
+            label: "Smart Payroll",
+            href: "https://payroll.razorpay.com/login?redirect=%2Fdashboard",
+            external: true,
+        },
+    ],
+};
+

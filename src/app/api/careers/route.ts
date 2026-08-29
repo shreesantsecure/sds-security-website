@@ -2,79 +2,79 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
 export async function POST(request: Request) {
-    try {
-        const apiKey = process.env.RESEND_API_KEY;
-        if (!apiKey) {
-            console.error("RESEND_API_KEY environment variable is missing.");
-            return NextResponse.json(
-                { success: false, error: "Server configuration error. Please try again later." },
-                { status: 500 }
-            );
-        }
+  try {
+    const apiKey = process.env.RESEND_API_KEY;
+    if (!apiKey) {
+      console.error("RESEND_API_KEY environment variable is missing.");
+      return NextResponse.json(
+        { success: false, error: "Server configuration error. Please try again later." },
+        { status: 500 }
+      );
+    }
 
-        const formData = await request.formData();
+    const formData = await request.formData();
 
-        const position = formData.get("position")?.toString() || "";
-        const fullName = formData.get("fullName")?.toString() || "";
-        const email = formData.get("email")?.toString() || "";
-        const phone = formData.get("phone")?.toString() || "";
-        const experience = formData.get("experience")?.toString() || "";
-        const message = formData.get("message")?.toString() || "";
-        const fileEntry = formData.get("file");
+    const position = formData.get("position")?.toString() || "";
+    const fullName = formData.get("fullName")?.toString() || "";
+    const email = formData.get("email")?.toString() || "";
+    const phone = formData.get("phone")?.toString() || "";
+    const experience = formData.get("experience")?.toString() || "";
+    const message = formData.get("message")?.toString() || "";
+    const fileEntry = formData.get("file");
 
-        // Validation
-        if (!position.trim()) {
-            return NextResponse.json(
-                { success: false, error: "Position applied for is required." },
-                { status: 400 }
-            );
-        }
+    // Validation
+    if (!position.trim()) {
+      return NextResponse.json(
+        { success: false, error: "Position applied for is required." },
+        { status: 400 }
+      );
+    }
 
-        if (!fullName.trim()) {
-            return NextResponse.json(
-                { success: false, error: "Full Name is required." },
-                { status: 400 }
-            );
-        }
+    if (!fullName.trim()) {
+      return NextResponse.json(
+        { success: false, error: "Full Name is required." },
+        { status: 400 }
+      );
+    }
 
-        if (!email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
-            return NextResponse.json(
-                { success: false, error: "A valid email address is required." },
-                { status: 400 }
-            );
-        }
+    if (!email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+      return NextResponse.json(
+        { success: false, error: "A valid email address is required." },
+        { status: 400 }
+      );
+    }
 
-        if (!phone.trim()) {
-            return NextResponse.json(
-                { success: false, error: "Phone number is required." },
-                { status: 400 }
-            );
-        }
+    if (!phone.trim()) {
+      return NextResponse.json(
+        { success: false, error: "Phone number is required." },
+        { status: 400 }
+      );
+    }
 
-        // Process File Attachment if present
-        const attachments: Array<{ filename: string; content: Buffer }> = [];
+    // Process File Attachment if present
+    const attachments: Array<{ filename: string; content: Buffer }> = [];
 
-        if (fileEntry && fileEntry instanceof File && fileEntry.size > 0) {
-            // Validate file size (< 10MB)
-            if (fileEntry.size > 10 * 1024 * 1024) {
-                return NextResponse.json(
-                    { success: false, error: "Attached resume exceeds the 10MB limit." },
-                    { status: 400 }
-                );
-            }
+    if (fileEntry && fileEntry instanceof File && fileEntry.size > 0) {
+      // Validate file size (< 10MB)
+      if (fileEntry.size > 10 * 1024 * 1024) {
+        return NextResponse.json(
+          { success: false, error: "Attached resume exceeds the 10MB limit." },
+          { status: 400 }
+        );
+      }
 
-            const arrayBuffer = await fileEntry.arrayBuffer();
-            const buffer = Buffer.from(arrayBuffer);
+      const arrayBuffer = await fileEntry.arrayBuffer();
+      const buffer = Buffer.from(arrayBuffer);
 
-            attachments.push({
-                filename: fileEntry.name || "Resume.pdf",
-                content: buffer,
-            });
-        }
+      attachments.push({
+        filename: fileEntry.name || "Resume.pdf",
+        content: buffer,
+      });
+    }
 
-        const resend = new Resend(apiKey);
+    const resend = new Resend(apiKey);
 
-        const htmlContent = `
+    const htmlContent = `
 <!DOCTYPE html>
 <html>
 <head>
@@ -159,39 +159,39 @@ export async function POST(request: Request) {
 </html>
         `;
 
-        const { data, error } = await resend.emails.send({
-            from: "Website <forms@securedesign.in>",
-            to: "office@sreesecure.com",
-            replyTo: email.trim(),
-            subject: `Job Application: ${position.trim()} - ${fullName.trim()}`,
-            html: htmlContent,
-            attachments: attachments.length > 0 ? attachments : undefined,
-        });
+    const { data, error } = await resend.emails.send({
+      from: "Website <forms@securedesign.in>",
+      to: "hrmanager@sreesecure.com",
+      replyTo: email.trim(),
+      subject: `Job Application: ${position.trim()} - ${fullName.trim()}`,
+      html: htmlContent,
+      attachments: attachments.length > 0 ? attachments : undefined,
+    });
 
-        if (error) {
-            console.error("Resend API error (careers):", error);
-            return NextResponse.json(
-                { success: false, error: error.message || "Failed to submit job application email." },
-                { status: 400 }
-            );
-        }
-
-        return NextResponse.json({ success: true, data });
-    } catch (err: unknown) {
-        const errorMessage = err instanceof Error ? err.message : "An unexpected error occurred.";
-        console.error("Careers API Route error:", err);
-        return NextResponse.json(
-            { success: false, error: errorMessage },
-            { status: 500 }
-        );
+    if (error) {
+      console.error("Resend API error (careers):", error);
+      return NextResponse.json(
+        { success: false, error: error.message || "Failed to submit job application email." },
+        { status: 400 }
+      );
     }
+
+    return NextResponse.json({ success: true, data });
+  } catch (err: unknown) {
+    const errorMessage = err instanceof Error ? err.message : "An unexpected error occurred.";
+    console.error("Careers API Route error:", err);
+    return NextResponse.json(
+      { success: false, error: errorMessage },
+      { status: 500 }
+    );
+  }
 }
 
 function escapeHtml(str: string): string {
-    return str
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 }

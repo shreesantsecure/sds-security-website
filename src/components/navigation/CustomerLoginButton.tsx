@@ -1,6 +1,7 @@
 "use client";
 
 import { UserCheck, ExternalLink } from "lucide-react";
+import { openTenantPortal } from "@/utils/portal";
 
 interface CustomerLoginButtonProps {
     className?: string;
@@ -9,15 +10,7 @@ interface CustomerLoginButtonProps {
 export function CustomerLoginButton({ className = "" }: CustomerLoginButtonProps) {
     const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();
-        const tenantUrl = "https://servewell.me/sreesecuredesignsolutions/";
-        const targetUrl = "https://servewell.me/web/home/#cust_login-section";
-
-        const win = window.open(tenantUrl, "_blank");
-        if (win) {
-            setTimeout(() => {
-                win.location.href = targetUrl;
-            }, 600);
-        }
+        openTenantPortal("https://servewell.me/web/home/#cust_login-section");
     };
 
     return (

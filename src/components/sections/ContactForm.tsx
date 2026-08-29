@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { openTenantPortal } from "@/utils/portal";
 
 export function ContactForm() {
     const [form, setForm] = useState({
@@ -15,15 +16,7 @@ export function ContactForm() {
 
     const handleCustomerLoginClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();
-        const tenantUrl = "https://servewell.me/sreesecuredesignsolutions/";
-        const targetUrl = "https://servewell.me/web/home/#cust_login-section";
-
-        const win = window.open(tenantUrl, "_blank");
-        if (win) {
-            setTimeout(() => {
-                win.location.href = targetUrl;
-            }, 600);
-        }
+        openTenantPortal("https://servewell.me/web/home/#cust_login-section");
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
