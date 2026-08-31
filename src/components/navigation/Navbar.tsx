@@ -188,9 +188,12 @@ export function Navbar() {
                         </div>
                     </div>
 
-                    {/* Right Container (Mobile: Customer Login + Hamburger) */}
+                    {/* Right Container (Mobile: Customer Login + Employee Login + Hamburger) */}
                     <div className="flex lg:hidden items-center gap-2">
-                        <CustomerLoginButton />
+                        <div className="flex flex-col items-end gap-1">
+                            <CustomerLoginButton />
+                            <EmployeeLoginButton />
+                        </div>
                         <button
                             onClick={toggleMobileMenu}
                             className="p-2 text-slate-700 hover:text-[#0B65C6] rounded-lg"

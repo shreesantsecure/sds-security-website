@@ -70,7 +70,7 @@ export function EmployeeLoginButton({ className = "" }: EmployeeLoginButtonProps
 
             {/* Dropdown Menu */}
             {isOpen && (
-                <div className="absolute top-full left-0 w-60 mt-1 bg-white rounded-xl shadow-xl border border-slate-100 py-2 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
+                <div className="absolute top-full right-0 sm:left-0 w-60 mt-1 bg-white rounded-xl shadow-xl border border-slate-100 py-2 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
                     <div className="px-3.5 py-1.5 mb-1 border-b border-slate-100">
                         <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">Employee Portals</p>
                     </div>
