@@ -2,51 +2,51 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
 export async function POST(request: Request) {
-    try {
-        const apiKey = process.env.RESEND_API_KEY;
-        if (!apiKey) {
-            console.error("RESEND_API_KEY environment variable is missing.");
-            return NextResponse.json(
-                { success: false, error: "Server configuration error. Please try again later." },
-                { status: 500 }
-            );
-        }
+  try {
+    const apiKey = process.env.RESEND_API_KEY?.trim();
+    if (!apiKey || apiKey === "your_resend_api_key") {
+      console.error("[Contact API] RESEND_API_KEY environment variable is missing or unconfigured.");
+      return NextResponse.json(
+        { success: false, error: "Server configuration error. Please ensure RESEND_API_KEY is configured in environment settings." },
+        { status: 500 }
+      );
+    }
 
-        const body = await request.json();
-        const { fullName, phone, email, message } = body || {};
+    const body = await request.json();
+    const { fullName, phone, email, message } = body || {};
 
-        // Validation
-        if (!fullName || typeof fullName !== "string" || !fullName.trim()) {
-            return NextResponse.json(
-                { success: false, error: "Full Name is required." },
-                { status: 400 }
-            );
-        }
+    // Validation
+    if (!fullName || typeof fullName !== "string" || !fullName.trim()) {
+      return NextResponse.json(
+        { success: false, error: "Full Name is required." },
+        { status: 400 }
+      );
+    }
 
-        if (!email || typeof email !== "string" || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
-            return NextResponse.json(
-                { success: false, error: "A valid email address is required." },
-                { status: 400 }
-            );
-        }
+    if (!email || typeof email !== "string" || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+      return NextResponse.json(
+        { success: false, error: "A valid email address is required." },
+        { status: 400 }
+      );
+    }
 
-        if (!phone || typeof phone !== "string" || !phone.trim()) {
-            return NextResponse.json(
-                { success: false, error: "Phone number is required." },
-                { status: 400 }
-            );
-        }
+    if (!phone || typeof phone !== "string" || !phone.trim()) {
+      return NextResponse.json(
+        { success: false, error: "Phone number is required." },
+        { status: 400 }
+      );
+    }
 
-        if (!message || typeof message !== "string" || !message.trim()) {
-            return NextResponse.json(
-                { success: false, error: "Message is required." },
-                { status: 400 }
-            );
-        }
+    if (!message || typeof message !== "string" || !message.trim()) {
+      return NextResponse.json(
+        { success: false, error: "Message is required." },
+        { status: 400 }
+      );
+    }
 
-        const resend = new Resend(apiKey);
+    const resend = new Resend(apiKey);
 
-        const htmlContent = `
+    const htmlContent = `
 <!DOCTYPE html>
 <html>
 <head>
@@ -115,38 +115,38 @@ export async function POST(request: Request) {
 </html>
         `;
 
-        const { data, error } = await resend.emails.send({
-            from: "Website <forms@securedesign.in>",
-            to: "office@sreesecure.com",
-            replyTo: email.trim(),
-            subject: `New Lead: ${fullName.trim()}`,
-            html: htmlContent,
-        });
+    const { data, error } = await resend.emails.send({
+      from: "Website <forms@securedesign.in>",
+      to: "office@sreesecure.com",
+      replyTo: email.trim(),
+      subject: `New Lead: ${fullName.trim()}`,
+      html: htmlContent,
+    });
 
-        if (error) {
-            console.error("Resend API error:", error);
-            return NextResponse.json(
-                { success: false, error: error.message || "Failed to send email message." },
-                { status: 400 }
-            );
-        }
-
-        return NextResponse.json({ success: true, data });
-    } catch (err: unknown) {
-        const errorMessage = err instanceof Error ? err.message : "An unexpected error occurred.";
-        console.error("Contact API Route error:", err);
-        return NextResponse.json(
-            { success: false, error: errorMessage },
-            { status: 500 }
-        );
+    if (error) {
+      console.error("Resend API error:", error);
+      return NextResponse.json(
+        { success: false, error: error.message || "Failed to send email message." },
+        { status: 400 }
+      );
     }
+
+    return NextResponse.json({ success: true, data });
+  } catch (err: unknown) {
+    const errorMessage = err instanceof Error ? err.message : "An unexpected error occurred.";
+    console.error("Contact API Route error:", err);
+    return NextResponse.json(
+      { success: false, error: errorMessage },
+      { status: 500 }
+    );
+  }
 }
 
 function escapeHtml(str: string): string {
-    return str
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 }

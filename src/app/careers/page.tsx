@@ -223,12 +223,17 @@ export default function CareersPage() {
                 body: payload,
             });
 
-            const data = await res.json();
+            let data;
+            try {
+                data = await res.json();
+            } catch {
+                data = null;
+            }
 
-            if (res.ok && data.success) {
+            if (res.ok && data?.success) {
                 setFormSubmitted(true);
             } else {
-                setErrorMessage(data.error || "Failed to submit application. Please try again.");
+                setErrorMessage(data?.error || "Failed to submit application. Please try again.");
             }
         } catch (err) {
             console.error("Career application submission error:", err);

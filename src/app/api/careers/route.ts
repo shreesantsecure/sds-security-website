@@ -3,11 +3,11 @@ import { Resend } from "resend";
 
 export async function POST(request: Request) {
   try {
-    const apiKey = process.env.RESEND_API_KEY;
-    if (!apiKey) {
-      console.error("RESEND_API_KEY environment variable is missing.");
+    const apiKey = process.env.RESEND_API_KEY?.trim();
+    if (!apiKey || apiKey === "your_resend_api_key") {
+      console.error("[Careers API] RESEND_API_KEY environment variable is missing or unconfigured.");
       return NextResponse.json(
-        { success: false, error: "Server configuration error. Please try again later." },
+        { success: false, error: "Server configuration error. Please ensure RESEND_API_KEY is configured in environment settings." },
         { status: 500 }
       );
     }

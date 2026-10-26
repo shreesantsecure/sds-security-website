@@ -39,12 +39,17 @@ export function ContactForm() {
                 body: JSON.stringify(form),
             });
 
-            const data = await res.json();
+            let data;
+            try {
+                data = await res.json();
+            } catch {
+                data = null;
+            }
 
-            if (res.ok && data.success) {
+            if (res.ok && data?.success) {
                 setSubmitted(true);
             } else {
-                setErrorMessage(data.error || "Failed to send message. Please try again.");
+                setErrorMessage(data?.error || "Failed to send message. Please try again.");
             }
         } catch (err) {
             console.error("Submission error:", err);
